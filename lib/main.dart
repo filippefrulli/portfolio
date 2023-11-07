@@ -48,31 +48,34 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: const EdgeInsets.only(left: 256, top: 12),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(left: 32, top: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _introductionWidget(),
-              const SizedBox(height: 64),
+              const SizedBox(height: 32),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     children: [
                       _experienceWidget(),
-                      const SizedBox(height: 64),
+                      const SizedBox(height: 32),
                       _skillsWidget(),
                     ],
                   ),
-                  const SizedBox(width: 128),
+                  const SizedBox(width: 32),
                   _projectsWidget(),
                 ],
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _introductionWidget() {
@@ -88,13 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         const SizedBox(
-          height: 128,
+          height: 32,
         ),
         _aboutMe(),
         const Text(
           'Fullstack developer by day, Flutter dev by night',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 20,
             color: Colors.black,
             fontWeight: FontWeight.w600,
           ),
@@ -114,14 +117,14 @@ class _MyHomePageState extends State<MyHomePage> {
           TextSpan(
             text: 'About',
             style: TextStyle(
-              fontSize: 80,
+              fontSize: 60,
               color: Colors.black,
             ),
           ),
           TextSpan(
             text: ' Me',
             style: TextStyle(
-              fontSize: 80,
+              fontSize: 60,
               color: Colors.orange,
               fontWeight: FontWeight.bold,
             ),
@@ -285,21 +288,17 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.black,
         ),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            _projectItem(
-                'assets/wn.webp',
-                'Watrch Next: AI movie & tv tips',
-                'https://apps.apple.com/de/app/watch-next-film-tv-tipps/id6450368827?l=en-GB?l=en',
-                'https://play.google.com/store/apps/details?id=com.filippefrulli.watch_next'),
-            _projectItem(
-              'assets/dentific.webp',
-              'Dentific',
-              'https://apps.apple.com/de/app/dentific/id1565683709',
-              'https://play.google.com/store/apps/details?id=com.dentific.dentific_app',
-            ),
-          ],
-        )
+        _projectItem(
+            'assets/wn.webp',
+            'Watrch Next: AI movie & tv tips',
+            'https://apps.apple.com/de/app/watch-next-film-tv-tipps/id6450368827?l=en-GB?l=en',
+            'https://play.google.com/store/apps/details?id=com.filippefrulli.watch_next'),
+        _projectItem(
+          'assets/dentific.webp',
+          'Dentific',
+          'https://apps.apple.com/de/app/dentific/id1565683709',
+          'https://play.google.com/store/apps/details?id=com.dentific.dentific_app',
+        ),
       ],
     );
   }
