@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: 'Raleway',
+        fontFamily: 'Julius Sans One',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
@@ -30,50 +32,68 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static final List<String> skillsList = [
-    'Java',
-    'Quarkus',
-    'Angular',
-    'Typescript',
-    'Flutter',
-    'Dart',
-    'Python',
-    'C++',
-    'AWS',
-    'Docker',
-    'Terraform',
-    'Jenkins',
-    'GitHub Actions'
-  ];
+  static const githubUrl = 'https://github.com/filippefrulli';
+  static const linkedinUrl = 'https://www.linkedin.com/in/filippe-frulli/';
+  static const publicationUrl = 'https://dl.acm.org/doi/10.1145/3491101.3519824';
+
+  static const dentificAndroidUrl =
+      'https://play.google.com/store/apps/details?id=com.dentific.dentific_app&hl=en&gl=US';
+  static const dentificIosUrl = 'https://apps.apple.com/ar/app/dentific/id1565683709';
+
+  static const watchNextAndroidUrl =
+      'https://play.google.com/store/apps/details?id=com.filippefrulli.watch_next&hl=en&gl=US';
+  static const watchNextIosUrl = 'https://apps.apple.com/us/app/watch-next-ai-movie-tv-tips/id6450368827';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(left: 32, top: 12),
-          child: Column(
+        child: ResponsiveLayout(
+          desktopLayout: _desktopBody(),
+          mobileLayout: _mobileBody(),
+        ),
+      ),
+    );
+  }
+
+  Widget _desktopBody() {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      padding: const EdgeInsets.only(left: 128, top: 12, right: 128),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _introductionWidget(),
+          Expanded(
+            child: Container(),
+          ),
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _introductionWidget(),
-              const SizedBox(height: 32),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              _watchNext(),
+              Expanded(
+                child: Container(),
+              ),
+              Column(
                 children: [
-                  Column(
+                  Row(
                     children: [
-                      _experienceWidget(),
-                      const SizedBox(height: 32),
-                      _skillsWidget(),
+                      _dentific(),
+                      const SizedBox(width: 32),
+                      _links(),
                     ],
                   ),
-                  const SizedBox(width: 32),
-                  _projectsWidget(),
+                  const SizedBox(height: 32),
+                  _contact()
                 ],
-              )
+              ),
             ],
           ),
-        ),
+          Expanded(
+            child: Container(),
+          ),
+        ],
       ),
     );
   }
@@ -82,55 +102,325 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Filippe Frulli',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
+          style: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.w200,
+            ),
           ),
         ),
         const SizedBox(
           height: 32,
         ),
-        _aboutMe(),
-        const Text(
-          'Fullstack developer by day, Flutter dev by night',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        _hello(),
       ],
     );
   }
 
-  Widget _aboutMe() {
-    return RichText(
-      text: const TextSpan(
-        style: TextStyle(
-          fontSize: 14.0,
-          color: Colors.black,
+  Widget _hello() {
+    return AnimatedTextKit(
+      animatedTexts: [
+        TypewriterAnimatedText(
+          'HI',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 80,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
         ),
-        children: <TextSpan>[
-          TextSpan(
-            text: 'About',
-            style: TextStyle(
-              fontSize: 60,
-              color: Colors.black,
+        TypewriterAnimatedText(
+          'HALLO',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 80,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
             ),
           ),
-          TextSpan(
-            text: ' Me',
-            style: TextStyle(
-              fontSize: 60,
-              color: Colors.orange,
-              fontWeight: FontWeight.bold,
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'HOLA',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 80,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
             ),
           ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'CIAO',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 80,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'BONJOUR',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 80,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+      ],
+      totalRepeatCount: 4,
+      pause: const Duration(milliseconds: 3000),
+      displayFullTextOnTap: true,
+      stopPauseOnTap: true,
+    );
+  }
+
+  Widget _watchNext() {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      height: MediaQuery.of(context).size.width * 0.35,
+      width: MediaQuery.of(context).size.width * 0.35,
+      decoration: const BoxDecoration(
+        color: Colors.orange,
+        borderRadius: BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'WATCH NEXT',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.android,
+                  color: Colors.black,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextAndroidUrl);
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.apple,
+                  color: Colors.black,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextIosUrl);
+                },
+              ),
+            ],
+          ),
+          Expanded(child: Container()),
+          Center(
+            child: Image.asset(
+              'assets/watch-next.png',
+              height: MediaQuery.of(context).size.width * 0.27,
+            ),
+          ),
+          Expanded(child: Container()),
         ],
       ),
+    );
+  }
+
+  Widget _dentific() {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      height: MediaQuery.of(context).size.width * 0.26,
+      width: MediaQuery.of(context).size.width * 0.26,
+      decoration: BoxDecoration(
+        color: Colors.blue[800],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'DENTIFIC',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.android,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(dentificAndroidUrl);
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.apple,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(dentificIosUrl);
+                },
+              ),
+            ],
+          ),
+          Expanded(child: Container()),
+          Center(
+            child: Image.asset(
+              'assets/dentific.png',
+              height: MediaQuery.of(context).size.width * 0.15,
+            ),
+          ),
+          Expanded(child: Container()),
+        ],
+      ),
+    );
+  }
+
+  Widget _links() {
+    return Column(
+      children: [
+        _linkItem(githubUrl, 'assets/github.png'),
+        const SizedBox(height: 32),
+        _linkItem(linkedinUrl, 'assets/linkedin.png'),
+        const SizedBox(height: 32),
+        _linkItem(publicationUrl, 'assets/publication.png'),
+      ],
+    );
+  }
+
+  _linkItem(String url, String asset) {
+    return TextButton(
+      onPressed: () {
+        _launchURL(url);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.width * 0.07,
+        width: MediaQuery.of(context).size.width * 0.12,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
+        child: Center(
+          child: Image.asset(
+            asset,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _contact() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+      height: MediaQuery.of(context).size.width * 0.06,
+      width: MediaQuery.of(context).size.width * 0.42,
+      decoration: BoxDecoration(
+        color: Colors.green[500],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'CONTACT',
+            style: GoogleFonts.juliusSansOne(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w200,
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              const Icon(Icons.email_outlined, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                'filippe1997@gmail.com',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 32),
+              const Icon(Icons.phone_outlined, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                '+39 3393047256',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _mobileBody() {
+    return Column(
+      children: [Container()],
     );
   }
 
@@ -138,7 +428,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title('Experience'),
+        //_title('Experience'),
         const SizedBox(height: 4),
         Container(
           height: 1,
@@ -211,157 +501,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _skillsWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _title('Skills'),
-        const SizedBox(height: 4),
-        Container(
-          height: 1,
-          width: 680,
-          color: Colors.black,
-        ),
-        const SizedBox(height: 16),
-        SizedBox(
-          width: 680,
-          child: Wrap(
-            children: skillsList.map((el) => _skillItem(el)).toList(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _title(String text) {
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(
-          fontSize: 14.0,
-          color: Colors.black,
-        ),
-        children: <TextSpan>[
-          TextSpan(
-            text: text,
-            style: const TextStyle(
-              fontSize: 28,
-              color: Colors.black,
-              fontFamily: 'Ralway',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _skillItem(String skill) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.grey[300],
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 30,
-      ),
-      child: Text(
-        skill,
-        style: const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-
-  Widget _projectsWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        _title('Projects'),
-        const SizedBox(height: 4),
-        Container(
-          height: 1,
-          width: 680,
-          color: Colors.black,
-        ),
-        const SizedBox(height: 16),
-        _projectItem(
-            'assets/wn.webp',
-            'Watrch Next: AI movie & tv tips',
-            'https://apps.apple.com/de/app/watch-next-film-tv-tipps/id6450368827?l=en-GB?l=en',
-            'https://play.google.com/store/apps/details?id=com.filippefrulli.watch_next'),
-        _projectItem(
-          'assets/dentific.webp',
-          'Dentific',
-          'https://apps.apple.com/de/app/dentific/id1565683709',
-          'https://play.google.com/store/apps/details?id=com.dentific.dentific_app',
-        ),
-      ],
-    );
-  }
-
-  Widget _projectItem(String icon, String title, iosUrl, androidUrl) {
-    return Container(
-      width: 500,
-      margin: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          width: 1,
-          color: Colors.grey[300]!,
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 30,
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            icon,
-            height: 64,
-            width: 64,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w800,
-              fontSize: 24,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                  _launchURL(androidUrl);
-                },
-                child: Image.asset(
-                  'assets/google-play.png',
-                  width: 200,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  _launchURL(iosUrl);
-                },
-                child: Image.asset(
-                  'assets/app-store.jpg',
-                  width: 170,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
   _launchURL(String url) async {
     Uri uri = Uri.parse(url);
 
@@ -370,5 +509,29 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       throw 'Could not launch $uri';
     }
+  }
+}
+
+class ResponsiveLayout extends StatelessWidget {
+  const ResponsiveLayout({
+    super.key,
+    required this.mobileLayout,
+    required this.desktopLayout,
+  });
+
+  final Widget mobileLayout;
+  final Widget desktopLayout;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth < 768) {
+          return mobileLayout;
+        } else {
+          return desktopLayout;
+        }
+      },
+    );
   }
 }

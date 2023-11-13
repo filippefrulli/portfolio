@@ -27,6 +27,10 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   url_launcher: ^6.2.1
+  google_fonts: ^6.1.0
+  adaptive_breakpoints: ^0.1.6
+  animated_text_kit: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:
@@ -42,15 +46,14 @@ flutter:
   assets:
     - assets/bmw_group_logo.jpeg
     - assets/pimco.jpeg
-    - assets/wn.webp
-    - assets/dentific.webp
-    - assets/google-play.png
-    - assets/app-store.jpg
+    - assets/github.png
+    - assets/linkedin.png
+    - assets/publication.png
+    - assets/watch-next.png
+    - assets/dentific.png
 
     
   fonts:
-    - family: Raleway
+    - family: Julius Sans On
       fonts:
-        - asset: fonts/Raleway-Italic.ttf
-        - asset: fonts/Raleway-Regular.ttf
-          style: italic
+        - asset: fonts/JuliusSansOne-Regular.ttf
