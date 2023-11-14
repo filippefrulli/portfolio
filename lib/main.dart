@@ -48,11 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: ResponsiveLayout(
-          desktopLayout: _desktopBody(),
-          mobileLayout: _mobileBody(),
-        ),
+      body: ResponsiveLayout(
+        desktopLayout: _desktopBody(),
+        mobileLayout: _mobileBody(),
       ),
     );
   }
@@ -60,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _desktopBody() {
     return Container(
       height: MediaQuery.of(context).size.height,
-      padding: const EdgeInsets.only(left: 128, top: 12, right: 128),
+      padding: const EdgeInsets.only(left: 64, top: 12, right: 64),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -88,12 +86,44 @@ class _MyHomePageState extends State<MyHomePage> {
                   _contact()
                 ],
               ),
+              Expanded(
+                child: Container(),
+              ),
             ],
           ),
           Expanded(
             child: Container(),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _mobileBody() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+        vertical: 12,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _introductionWidgetMobile(),
+            const SizedBox(
+              height: 32,
+            ),
+            _watchNextMobile(),
+            const SizedBox(
+              height: 32,
+            ),
+            _dentificMobile(),
+            const SizedBox(height: 32),
+            _linksMobile(),
+            const SizedBox(height: 32),
+            _contactMobile(),
+          ],
+        ),
       ),
     );
   }
@@ -116,6 +146,28 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 32,
         ),
         _hello(),
+      ],
+    );
+  }
+
+  Widget _introductionWidgetMobile() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Filippe Frulli',
+          style: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        _helloMobile(),
       ],
     );
   }
@@ -196,6 +248,82 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _helloMobile() {
+    return AnimatedTextKit(
+      animatedTexts: [
+        TypewriterAnimatedText(
+          'HI',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'HALLO',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'HOLA',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'CIAO',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+        TypewriterAnimatedText(
+          'BONJOUR',
+          textStyle: GoogleFonts.juliusSansOne(
+            textStyle: const TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 8,
+            ),
+          ),
+          cursor: '',
+          speed: const Duration(milliseconds: 300),
+        ),
+      ],
+      totalRepeatCount: 4,
+      pause: const Duration(milliseconds: 3000),
+      displayFullTextOnTap: true,
+      stopPauseOnTap: true,
+    );
+  }
+
   Widget _watchNext() {
     return Container(
       padding: const EdgeInsets.all(32),
@@ -252,6 +380,69 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Image.asset(
               'assets/watch-next.png',
               height: MediaQuery.of(context).size.width * 0.27,
+            ),
+          ),
+          Expanded(child: Container()),
+        ],
+      ),
+    );
+  }
+
+  Widget _watchNextMobile() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      height: MediaQuery.of(context).size.width * 0.9,
+      decoration: const BoxDecoration(
+        color: Colors.orange,
+        borderRadius: BorderRadius.all(
+          Radius.circular(25),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'WATCH NEXT',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.android,
+                  color: Colors.black,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextAndroidUrl);
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.apple,
+                  color: Colors.black,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextIosUrl);
+                },
+              ),
+            ],
+          ),
+          Expanded(child: Container()),
+          Center(
+            child: Image.asset(
+              'assets/watch-next.png',
+              height: MediaQuery.of(context).size.width * 0.69,
             ),
           ),
           Expanded(child: Container()),
@@ -324,6 +515,69 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _dentificMobile() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      height: MediaQuery.of(context).size.width * 0.9,
+      decoration: BoxDecoration(
+        color: Colors.blue[800],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(25),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'DENTIFIC',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.android,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(dentificAndroidUrl);
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.apple,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () {
+                  _launchURL(dentificIosUrl);
+                },
+              ),
+            ],
+          ),
+          Expanded(child: Container()),
+          Center(
+            child: Image.asset(
+              'assets/dentific.png',
+              height: MediaQuery.of(context).size.width * 0.69,
+            ),
+          ),
+          Expanded(child: Container()),
+        ],
+      ),
+    );
+  }
+
   Widget _links() {
     return Column(
       children: [
@@ -336,15 +590,53 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _linksMobile() {
+    return Row(
+      children: [
+        _linkItemMobile(githubUrl, 'assets/github.png'),
+        Expanded(child: Container()),
+        _linkItemMobile(linkedinUrl, 'assets/linkedin.png'),
+        const SizedBox(height: 32),
+        Expanded(child: Container()),
+        _linkItemMobile(publicationUrl, 'assets/publication.png'),
+      ],
+    );
+  }
+
   _linkItem(String url, String asset) {
     return TextButton(
       onPressed: () {
         _launchURL(url);
       },
       child: Container(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         height: MediaQuery.of(context).size.width * 0.07,
         width: MediaQuery.of(context).size.width * 0.12,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
+        child: Center(
+          child: Image.asset(
+            asset,
+            height: MediaQuery.of(context).size.width * 0.03,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _linkItemMobile(String url, String asset) {
+    return TextButton(
+      onPressed: () {
+        _launchURL(url);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        height: 70,
+        width: MediaQuery.of(context).size.width * 0.25,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -363,7 +655,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _contact() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-      height: MediaQuery.of(context).size.width * 0.06,
+      height: 85,
       width: MediaQuery.of(context).size.width * 0.42,
       decoration: BoxDecoration(
         color: Colors.green[500],
@@ -418,86 +710,65 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _mobileBody() {
-    return Column(
-      children: [Container()],
-    );
-  }
-
-  Widget _experienceWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        //_title('Experience'),
-        const SizedBox(height: 4),
-        Container(
-          height: 1,
-          width: 680,
-          color: Colors.black,
+  Widget _contactMobile() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+      height: 140,
+      decoration: BoxDecoration(
+        color: Colors.green[500],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(50),
         ),
-        const SizedBox(height: 16),
-        _experienceItem(
-          'assets/bmw_group_logo.jpeg',
-          'DevOps Engineer',
-          'BMW Group',
-          'Oct 2021 - today',
-        ),
-        const SizedBox(height: 16),
-        _experienceItem(
-          'assets/bmw_group_logo.jpeg',
-          'Fastlane Scholar',
-          'BMW Group',
-          'Oct 2019 - Sep 2021',
-        ),
-        const SizedBox(height: 16),
-        _experienceItem(
-          'assets/pimco.jpeg',
-          'IT Support, Working Student',
-          'Allianz Real Estate',
-          'Feb 2019 - Jul 2020',
-        ),
-      ],
-    );
-  }
-
-  Widget _experienceItem(String image, String title, String company, String time) {
-    return Row(
-      children: [
-        Image.asset(
-          image,
-          height: 64,
-          width: 64,
-        ),
-        const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'CONTACT',
+            style: GoogleFonts.juliusSansOne(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w200,
               ),
             ),
-            Text(
-              company,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Icon(Icons.email_outlined, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                'filippe1997@gmail.com',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
               ),
-            ),
-            Text(
-              time,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic,
-                color: Colors.grey[800],
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Icon(Icons.phone_outlined, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                '+39 3393047256',
+                style: GoogleFonts.juliusSansOne(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -526,7 +797,7 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < 768) {
+        if (constraints.maxWidth < 1000) {
           return mobileLayout;
         } else {
           return desktopLayout;
