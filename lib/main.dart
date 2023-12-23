@@ -69,10 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _watchNext(),
               Expanded(
                 child: Container(),
               ),
+              _watchNext(),
+              const SizedBox(width: 32),
               Column(
                 children: [
                   Row(
@@ -326,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _watchNext() {
     return Container(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
       height: MediaQuery.of(context).size.width * 0.35,
       width: MediaQuery.of(context).size.width * 0.35,
       decoration: const BoxDecoration(
@@ -453,7 +454,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _dentific() {
     return Container(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
       height: MediaQuery.of(context).size.width * 0.26,
       width: MediaQuery.of(context).size.width * 0.26,
       decoration: BoxDecoration(
