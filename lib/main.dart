@@ -44,6 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
       'https://play.google.com/store/apps/details?id=com.filippefrulli.watch_next&hl=en&gl=US';
   static const watchNextIosUrl = 'https://apps.apple.com/us/app/watch-next-ai-movie-tv-tips/id6450368827';
 
+  static const watchNextGitHubUrl = 'https://github.com/filippefrulli/watch-next';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -354,6 +356,15 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: Container(),
               ),
+              TextButton(
+                child: Image.asset(
+                  'assets/github.png',
+                  height: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextGitHubUrl);
+                },
+              ),
               IconButton(
                 icon: const Icon(
                   Icons.android,
@@ -416,6 +427,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: Container(),
+              ),
+              TextButton(
+                child: Image.asset(
+                  'assets/github.png',
+                  height: 32,
+                ),
+                onPressed: () {
+                  _launchURL(watchNextGitHubUrl);
+                },
               ),
               IconButton(
                 icon: const Icon(
