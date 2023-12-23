@@ -1,8 +1,9 @@
-# portfolio
+# Portfolio
 
-A new Flutter project.
+A simple responsive Flutter website.
 
-## Getting Started
+
+## Getting started with Flutter
 
 This project is a starting point for a Flutter application.
 
